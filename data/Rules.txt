@@ -1,0 +1,21 @@
+a,b->P.( a + b ) * 2
+b,P->a. P / 2 - b
+a,P->b. P / 2 - a
+a,b->S. a * b
+a,S->b. S / a
+b.S->a. S / b
+m->n. m
+a,b->m. sqrt ( a * a + b * b )
+a,m->b. sqrt ( m * m - a * a )
+b,m->a. sqrt ( m * m - b * b )
+a,b->n. sqrt ( a * a + b * b )
+a,n->b. sqrt ( n * n - a * a )
+b,n->a. sqrt ( n * n - b * b )
+r->m. r / 2
+m->r. m * 2
+r->n. r / 2
+n->r. n / 2
+A->A. 90
+B->B. 90
+C->C. 90
+D->D. 90
