@@ -116,24 +116,22 @@ namespace RectangleSolver
 			{
 				if (txt_value.Text != "" && (isNumeric == true || txt_value.Text == "?"))
 				{
-					if (m_attributesInfo[cbb_attributes.SelectedIndex].m_value == null)
+					if (m_attributesInfo[cbb_attributes.SelectedIndex + 4].m_value == null)
 					{
-						m_attributesInfo[cbb_attributes.SelectedIndex].m_value = txt_value.Text;
+						m_attributesInfo[cbb_attributes.SelectedIndex + 4].m_value = txt_value.Text;
 						string _item = cbb_attributes.SelectedItem.ToString() + " = " + txt_value.Text;
 
 						txt_info.Text += _item + Environment.NewLine;
+						txt_value.Text = "";
 					}
 					else
 					{
 						MessageBox.Show("Change value of attribute is not implement!");
 					}
-
-					txt_value.Text = "";
-
 				}
 				else if (!isNumeric)
 				{
-					if (m_attributesInfo[cbb_attributes.SelectedIndex].m_value == null)
+					if (m_attributesInfo[cbb_attributes.SelectedIndex + 4].m_value == null)
 					{
 						string _postfixFomular = Processor.ConvertToPostfixExpression(txt_value.Text);
 						int _currentPosition = 0;
@@ -151,12 +149,6 @@ namespace RectangleSolver
 
 								switch (_currentExpress)
 								{
-									case "90":
-										_stackProcessing.Push(90);
-										break;
-									case "2":
-										_stackProcessing.Push(2);
-										break;
 									case "+":
 										_stackProcessing.Push(_stackProcessing.Pop() + _stackProcessing.Pop());
 										break;
@@ -173,28 +165,26 @@ namespace RectangleSolver
 										_stackProcessing.Push(Math.Sqrt(_stackProcessing.Pop()));
 										break;
 									default:
-										int _index = System.Array.FindIndex(Statics.ATTRIBUTE, item => item == _currentExpress);
-										double _temp;
-										double.TryParse(m_attributesInfo[_index].m_value, out _temp);
+										int _temp;
+										int.TryParse(_currentExpress, out _temp);
 
-										try
+										if (_temp == 0)
 										{
-											_stackProcessing.Push(_temp);
+											int _index = System.Array.FindIndex(Statics.ATTRIBUTE, item => item == _currentExpress);
+											int.TryParse(m_attributesInfo[_index].m_value, out _temp);
 										}
-										catch
-										{
-
-										}
+										_stackProcessing.Push(_temp);
 
 										break;
 								}
 							}
 						}
 
-						m_attributesInfo[cbb_attributes.SelectedIndex].m_value = Math.Round(_stackProcessing.Pop(), 2).ToString();
+						m_attributesInfo[cbb_attributes.SelectedIndex + 4].m_value = Math.Round(_stackProcessing.Pop(), 2).ToString();
 						string _item = cbb_attributes.SelectedItem.ToString() + " = " + txt_value.Text;
 
 						txt_info.Text += _item + Environment.NewLine;
+						txt_value.Text = "";
 					}
 					else
 					{

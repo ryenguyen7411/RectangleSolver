@@ -42,10 +42,6 @@
 			this.cbb_attributes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cbb_attributes.FormattingEnabled = true;
 			this.cbb_attributes.Items.AddRange(new object[] {
-            "A",
-            "B",
-            "C",
-            "D",
             "a",
             "b",
             "S",
