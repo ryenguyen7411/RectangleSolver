@@ -181,7 +181,8 @@ namespace RectangleSolver
 						}
 
 						m_attributesInfo[cbb_attributes.SelectedIndex + 4].m_value = Math.Round(_stackProcessing.Pop(), 2).ToString();
-						string _item = cbb_attributes.SelectedItem.ToString() + " = " + txt_value.Text;
+						string _item = cbb_attributes.SelectedItem.ToString() + " = " + txt_value.Text 
+													+ " = " + double.Parse(m_attributesInfo[cbb_attributes.SelectedIndex + 4].m_value);
 
 						txt_info.Text += _item + Environment.NewLine;
 						txt_value.Text = "";
