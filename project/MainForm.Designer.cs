@@ -73,7 +73,7 @@
 			this.txt_value.TabIndex = 6;
 			this.txt_value.TextAlignment = System.Windows.Forms.HorizontalAlignment.Left;
 			this.txt_value.UseSystemPasswordChar = false;
-			this.txt_value.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txt_value_KeyUp);
+			this.txt_value.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_value_KeyDown);
 			// 
 			// lbl_equal
 			// 
@@ -108,7 +108,7 @@
 			this.txt_result.MaxLength = 32767;
 			this.txt_result.Multiline = true;
 			this.txt_result.Name = "txt_result";
-			this.txt_result.ReadOnly = false;
+			this.txt_result.ReadOnly = true;
 			this.txt_result.Size = new System.Drawing.Size(300, 190);
 			this.txt_result.TabIndex = 3;
 			this.txt_result.TextAlignment = System.Windows.Forms.HorizontalAlignment.Left;
@@ -123,7 +123,7 @@
 			this.txt_info.MaxLength = 32767;
 			this.txt_info.Multiline = true;
 			this.txt_info.Name = "txt_info";
-			this.txt_info.ReadOnly = false;
+			this.txt_info.ReadOnly = true;
 			this.txt_info.Size = new System.Drawing.Size(248, 190);
 			this.txt_info.TabIndex = 2;
 			this.txt_info.TextAlignment = System.Windows.Forms.HorizontalAlignment.Left;

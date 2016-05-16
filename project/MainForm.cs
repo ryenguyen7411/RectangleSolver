@@ -68,11 +68,10 @@ namespace RectangleSolver
 				m_attributesInfo.Add(_attribute);
 			}
 
-			//AddAttribute.IsEnabled = true;
-			//Go.IsEnabled = true;
-
-			//cbb_attributes.IsEnabled = true;
-			//txt_value.IsEnabled = true;
+			m_attributesInfo[0].m_value = "90";
+			m_attributesInfo[1].m_value = "90";
+			m_attributesInfo[2].m_value = "90";
+			m_attributesInfo[3].m_value = "90";
 		}
 
 		private void btn_add_attribute_Click(object sender, EventArgs e)
@@ -100,26 +99,11 @@ namespace RectangleSolver
 				Stdouts = new Stdout(Processors, Assumptions, Conclusion);
 				Stdouts.Out();
 
-				//Requirements.Text = m_presentation.m_requirements;
 				txt_result.Text = Stdouts.m_results;
-
-				//AddAttribute.IsEnabled = false;
-				//Go.IsEnabled = false;
-
-				//cmb_attribute.IsEnabled = false;
-				//txtbox_value.IsEnabled = false;
 			}
 			else
 			{
 				MessageBox.Show("Dữ liệu đầu vào không đủ, vui lòng cung cấp thêm để thực hiện bài toán!", "Warning");
-			}
-		}
-
-		private void txt_value_KeyUp(object sender, KeyEventArgs e)
-		{
-			if (e.KeyCode == Keys.Enter)
-			{
-				AddAttribute();
 			}
 		}
 
@@ -142,27 +126,6 @@ namespace RectangleSolver
 					else
 					{
 						MessageBox.Show("Change value of attribute is not implement!");
-						//m_attributesInfo[cmb_attribute.SelectedIndex].m_value = txt_value.Text;
-
-						//ComboBoxItem _selectedItem = (ComboBoxItem)(cmb_attribute.SelectedValue);
-						//string _item = _selectedItem.Content.ToString() + " = " + txt_value.Text;
-
-						//if (txt_value.Text == "?")
-						//{
-						//	lstview_conclusions.Items.RemoveAt(m_attributesInfo[cmb_attribute.SelectedIndex].m_listViewIndex);
-						//	RefreshListViewIndex(m_attributesInfo[cmb_attribute.SelectedIndex].m_listViewIndex, true);
-
-						//	lstview_conclusions.Items.Add(_item);
-						//	m_attributesInfo[cmb_attribute.SelectedIndex].m_listViewIndex = lstview_conclusions.Items.Count - 1;
-						//}
-						//else
-						//{
-						//	lstview_assumptions.Items.RemoveAt(m_attributesInfo[cmb_attribute.SelectedIndex].m_listViewIndex);
-						//	RefreshListViewIndex(m_attributesInfo[cmb_attribute.SelectedIndex].m_listViewIndex, false);
-
-						//	lstview_assumptions.Items.Add(_item);
-						//	m_attributesInfo[cmb_attribute.SelectedIndex].m_listViewIndex = lstview_assumptions.Items.Count - 1;
-						//}
 					}
 
 					txt_value.Text = "";
@@ -197,6 +160,14 @@ namespace RectangleSolver
 						m_conclusion = i;
 					}
 				}
+			}
+		}
+
+		private void txt_value_KeyDown(object sender, KeyEventArgs e)
+		{
+			if ((e.KeyCode & Keys.Enter) == Keys.Enter)
+			{
+				AddAttribute();
 			}
 		}
 	}

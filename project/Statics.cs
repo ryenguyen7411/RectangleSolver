@@ -17,7 +17,7 @@ namespace RectangleSolver
 	public static class Statics
 	{
 		public static readonly string RULES_DIRECTORY = @"..\..\data\Rules.txt";
-		public static readonly Char RULED_DELIMITER = '.';
+		public static readonly char RULED_DELIMITER = '.';
 		public static readonly string EMPTY_STR = "";
 
 		public static readonly string[] ATTRIBUTE =

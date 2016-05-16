@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
@@ -58,13 +59,13 @@ namespace RectangleSolver
 				{
 					if (m_processors.m_listRules[m_processors.m_listRulesUsed[i]][j] == 1)
 					{
-						m_results += "Tính " + Statics.ATTRIBUTE_STR[j] + "\n";
-						m_results += "- Từ công thức: " + Statics.ATTRIBUTE[j] + " = " + GetFormula(m_processors.m_listRulesUsed[i]) + "\n"
-									+ "   Ta suy ra: " + Statics.ATTRIBUTE_STR[j] + " = " + m_processors.ListValues[j] + "\n";
+						m_results += "Tính " + Statics.ATTRIBUTE_STR[j] + "." + Environment.NewLine;
+						m_results += "- Từ công thức: " + Statics.ATTRIBUTE[j] + " = " + GetFormula(m_processors.m_listRulesUsed[i]) + "." + Environment.NewLine
+						+ "   Ta suy ra: " + Statics.ATTRIBUTE_STR[j] + " = " + m_processors.ListValues[j] + "." + Environment.NewLine;
 
 						if (i == m_processors.m_listRulesUsed.Count - 1)
 							m_results += "\nKết luận: Vậy giá trị của " + Statics.ATTRIBUTE_STR[j] + " cần tìm là "
-												+ m_processors.ListValues[j] + ".\n";
+												+ m_processors.ListValues[j] + "." + Environment.NewLine;
 
 						break;
 					}

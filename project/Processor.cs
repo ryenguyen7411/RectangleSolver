@@ -61,8 +61,8 @@ namespace RectangleSolver
 
 						switch (_currentExpress)
 						{
-							case "180":
-								_stackProcessing.Push(180);
+							case "90":
+								_stackProcessing.Push(90);
 								break;
 							case "2":
 								_stackProcessing.Push(2);
@@ -77,19 +77,10 @@ namespace RectangleSolver
 								_stackProcessing.Push(_stackProcessing.Pop() * _stackProcessing.Pop());
 								break;
 							case "/":
-								_stackProcessing.Push(_stackProcessing.Pop() * (1 / _stackProcessing.Pop()));
+								_stackProcessing.Push((1 / _stackProcessing.Pop()) * _stackProcessing.Pop());
 								break;
 							case "sqrt":
 								_stackProcessing.Push(Math.Sqrt(_stackProcessing.Pop()));
-								break;
-							case "sin":
-								_stackProcessing.Push(Math.Sin(Math.PI * (_stackProcessing.Pop() / 180)));
-								break;
-							case "cos":
-								_stackProcessing.Push(Math.Cos(Math.PI * (_stackProcessing.Pop() / 180)));
-								break;
-							case "arcsin":
-								_stackProcessing.Push(Math.Round((Math.Asin(_stackProcessing.Pop()) / Math.PI * 180), 2));
 								break;
 							default:
 								int _index = System.Array.FindIndex(Statics.ATTRIBUTE, item => item == _currentExpress);
@@ -156,14 +147,10 @@ namespace RectangleSolver
 							}
 							_stackStr.Push(_currentElement);
 							break;
-						case "sin":
-						case "cos":
-						case "arcsin":
 						case "sqrt":
 							if (_stackStr.Count != 0)
 							{
-								while (_stackStr.Peek() == "sin" || _stackStr.Peek() == "cos"
-									|| _stackStr.Peek() == "arcsin" || _stackStr.Peek() == "sqrt")
+								while (_stackStr.Peek() == "sqrt")
 									_postfixExpression += _stackStr.Pop() + " ";
 							}
 							_stackStr.Push(_currentElement);
