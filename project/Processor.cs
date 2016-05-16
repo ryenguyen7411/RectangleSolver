@@ -34,7 +34,6 @@ namespace RectangleSolver
 		public void ProcessCaculate()
 		{
 			m_listValues = new List<double>();
-			Stack<double> _stackProcessing = new Stack<double>();
 
 			for (int i = 0; i < Statics.ATTRIBUTE.Length; i++)
 			{
@@ -47,8 +46,11 @@ namespace RectangleSolver
 
 			for (int i = 0; i < m_listRulesUsed.Count; i++)
 			{
-				string _postfixFomular = ConvertToPostfixExpression(m_listRulesUsed[i]);
+				string _infixExpression = File.ReadLines(Statics.RULES_DIRECTORY).Skip(m_listRulesUsed[i]).Take(1).First();
+				string _postfixFomular = ConvertToPostfixExpression(_infixExpression);
 				int _currentPosition = 0;
+
+				Stack<double> _stackProcessing = new Stack<double>();
 
 				for (int j = 0; j < _postfixFomular.Length; j++)
 				{
@@ -102,27 +104,32 @@ namespace RectangleSolver
 			}
 		}
 
-		private string ConvertToPostfixExpression(int expressionIndex)
+		private void ABC(int ruleIndex)
+		{
+			
+		}
+
+		public static string ConvertToPostfixExpression(string infixExpression)
 		{
 			Stack<string> _stackStr = new Stack<string>();
 
-			string _infixExpression = File.ReadLines(Statics.RULES_DIRECTORY).Skip(expressionIndex).Take(1).First();
+			//string _infixExpression = File.ReadLines(Statics.RULES_DIRECTORY).Skip(expressionIndex).Take(1).First();
 			string _postfixExpression = "";
 
-			_infixExpression = _infixExpression.Substring(_infixExpression.IndexOf(Statics.RULED_DELIMITER) + 1);
+			infixExpression = infixExpression.Substring(infixExpression.IndexOf(Statics.RULED_DELIMITER) + 1);
 
 			int _currentPosition = 0;
 
-			for (int i = 0; i < _infixExpression.Length; i++)
+			for (int i = 0; i < infixExpression.Length; i++)
 			{
-				if (_infixExpression[i] == ' ' || i == _infixExpression.Length - 1)
+				if (infixExpression[i] == ' ' || i == infixExpression.Length - 1)
 				{
 					string _currentElement = "";
 
-					if (_infixExpression.Length - 1 != i)
-						_currentElement = _infixExpression.Substring(_currentPosition, i - _currentPosition);
+					if (infixExpression.Length - 1 != i)
+						_currentElement = infixExpression.Substring(_currentPosition, i - _currentPosition);
 					else
-						_currentElement = _infixExpression.Substring(_currentPosition, i - _currentPosition + 1);
+						_currentElement = infixExpression.Substring(_currentPosition, i - _currentPosition + 1);
 
 					_currentPosition = i + 1;
 

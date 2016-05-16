@@ -133,12 +133,80 @@ namespace RectangleSolver
 				}
 				else if (!isNumeric)
 				{
-					MessageBox.Show("Value must be number!");
+					if (m_attributesInfo[cbb_attributes.SelectedIndex].m_value == null)
+					{
+						string _postfixFomular = Processor.ConvertToPostfixExpression(txt_value.Text);
+						int _currentPosition = 0;
+
+						Stack<double> _stackProcessing = new Stack<double>();
+
+						for (int j = 0; j < _postfixFomular.Length; j++)
+						{
+							string _currentExpress = "";
+
+							if (_postfixFomular[j] == ' ')
+							{
+								_currentExpress = _postfixFomular.Substring(_currentPosition, j - _currentPosition);
+								_currentPosition = j + 1;
+
+								switch (_currentExpress)
+								{
+									case "90":
+										_stackProcessing.Push(90);
+										break;
+									case "2":
+										_stackProcessing.Push(2);
+										break;
+									case "+":
+										_stackProcessing.Push(_stackProcessing.Pop() + _stackProcessing.Pop());
+										break;
+									case "-":
+										_stackProcessing.Push(-_stackProcessing.Pop() + _stackProcessing.Pop());
+										break;
+									case "*":
+										_stackProcessing.Push(_stackProcessing.Pop() * _stackProcessing.Pop());
+										break;
+									case "/":
+										_stackProcessing.Push((1 / _stackProcessing.Pop()) * _stackProcessing.Pop());
+										break;
+									case "sqrt":
+										_stackProcessing.Push(Math.Sqrt(_stackProcessing.Pop()));
+										break;
+									default:
+										int _index = System.Array.FindIndex(Statics.ATTRIBUTE, item => item == _currentExpress);
+										double _temp;
+										double.TryParse(m_attributesInfo[_index].m_value, out _temp);
+
+										try
+										{
+											_stackProcessing.Push(_temp);
+										}
+										catch
+										{
+
+										}
+
+										break;
+								}
+							}
+						}
+
+						m_attributesInfo[cbb_attributes.SelectedIndex].m_value = Math.Round(_stackProcessing.Pop(), 2).ToString();
+						string _item = cbb_attributes.SelectedItem.ToString() + " = " + txt_value.Text;
+
+						txt_info.Text += _item + Environment.NewLine;
+					}
+					else
+					{
+						MessageBox.Show("Change value of attribute is not implement!");
+					}
+
+					//MessageBox.Show("Value must be number!");
 				}
 			}
 			catch
 			{
-
+				MessageBox.Show("Invalid input. Please check your input!");
 			}
 		}
 

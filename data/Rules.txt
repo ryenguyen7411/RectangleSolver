@@ -4,7 +4,7 @@ a,P->b.P / 2 - a
 a,b->S.a * b
 a,S->b.S / a
 b.S->a.S / b
-m->n. m
+m->n.m
 a,b->m.sqrt ( a * a + b * b )
 a,m->b.sqrt ( m * m - a * a )
 b,m->a.sqrt ( m * m - b * b )
